@@ -12,11 +12,11 @@ resource "aws_lb" "internal-lb" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "internal-lb-tg-attachment" {
+/*resource "aws_lb_target_group_attachment" "internal-lb-tg-attachment" {
   target_group_arn = aws_lb_target_group.internal-lb-tg.arn
   target_id        = aws_lb.internal-lb.arn
   port             = 80
-}
+}*/
 
 resource "aws_lb_target_group" "internal-lb-tg" {
   name        = "myapp-internal-lb-tg"

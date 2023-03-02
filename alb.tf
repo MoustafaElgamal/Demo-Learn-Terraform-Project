@@ -45,11 +45,11 @@ resource "aws_lb" "myapp-alb" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "alb-tg-attachment" {
+/*resource "aws_lb_target_group_attachment" "alb-tg-attachment" {
   target_group_arn = aws_lb_target_group.alb-tg.arn
   target_id        = aws_lb.myapp-alb.arn
   port             = 80
-}
+}*/
 
 resource "aws_lb_target_group" "alb-tg" {
   name        = "myapp-alb-tg"
@@ -57,15 +57,6 @@ resource "aws_lb_target_group" "alb-tg" {
   port        = 80
   protocol    = "TCP"
   vpc_id      = aws_vpc.myvpc.id
-
-  stickiness {
-    type = "lb_cookie"
-   }
-  # Alter the destination of the health check to be the login page.
-  health_check {
-    path = "/login"
-    port = 80
-  }
 }
 
 resource "aws_alb_listener" "listener_http" {
