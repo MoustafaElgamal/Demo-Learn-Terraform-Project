@@ -57,3 +57,7 @@ variable "image_name_owner" {
 variable "db_instance" {
   type = string
 }
+
+variable "all_ips_cidr" {
+  
+}

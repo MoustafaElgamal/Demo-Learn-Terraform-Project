@@ -32,7 +32,7 @@ resource "aws_security_group_rule" "my-rds-sg-rule" {
   security_group_id = "${aws_security_group.my-rds-sg.id}"
   to_port = 3306
   type = "ingress"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = [var.all_ips_cidr]
 }
 
 resource "aws_security_group_rule" "outbound_rule" {
@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "outbound_rule" {
   security_group_id = "${aws_security_group.my-rds-sg.id}"
   to_port = 0
   type = "egress"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = [var.all_ips_cidr]
 }
 
 
