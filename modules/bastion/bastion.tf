@@ -1,6 +1,6 @@
 resource "aws_security_group" "bastion-sg" {
   name        = "bastion-sg"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port        = 22
@@ -52,7 +52,7 @@ resource "aws_key_pair" "ssh-key" {
 resource "aws_instance" "myapp-server" {
   ami                     = data.aws_ami.latest-amazon-linux-image.id
   instance_type           = var.ec2_instance_type
-  subnet_id = aws_subnet.public1.id
+  subnet_id = var.public1_subnet_id
   vpc_security_group_ids = [aws_security_group.bastion-sg.id]
   availability_zone = var.region_subnet_1_id
 

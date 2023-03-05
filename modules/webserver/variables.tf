@@ -1,0 +1,11 @@
+variable "vpc_id" {}
+variable "all_ips_cidr" {}
+variable "my_ip" {}
+variable "private_subnet_1_cidr" {}
+variable "private_subnet_2_cidr" {}
+variable "env_prefix" {}
+variable "image_name_owner" {}
+variable "image_name" {}
+variable "ec2_instance_type" {}
+variable "private1_subnet_id" {}
+variable "private2_subnet_id" {}

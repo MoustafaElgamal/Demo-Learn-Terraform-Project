@@ -1,0 +1,14 @@
+variable "rds_db_identifier" {}
+variable "rds_db_name" {}
+variable "rds_db_username" {}
+variable "rds_db_password" {}
+variable "rds_db_engine" {}
+variable "rds_db_engine_version" {}
+variable "db_instance" {}
+variable "region_subnet_1_id" {}
+variable "private_subnet_1_id" {}
+variable "private_subnet_2_id" {}
+variable "vpc_id" {}
+variable "all_ips_cidr" {}
+variable "region_subnet_2_id" {}
+variable "rds_db_storage_type" {}

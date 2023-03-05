@@ -1,13 +1,13 @@
 resource "aws_db_instance" "my-rds-sql-db" {
   instance_class = "${var.db_instance}"
-  engine = "mysql"
-  engine_version = "5.7"
-  storage_type = "gp2"
+  engine = var.rds_db_engine
+  engine_version = var.rds_db_engine_version
+  storage_type = var.rds_db_storage_type
   allocated_storage = 20
-  identifier = "my-rds-sql-db"
-  db_name = "my-rds-sql-db"
-  username = "admin"
-  password = "admin123"
+  identifier = var.rds_db_identifier
+  db_name = var.rds_db_name
+  username = var.rds_db_username
+  password = var.rds_db_password
   apply_immediately = "true"
   availability_zone = var.region_subnet_1_id
   backup_retention_period = 1
@@ -18,12 +18,12 @@ resource "aws_db_instance" "my-rds-sql-db" {
 
 resource "aws_db_subnet_group" "my-rds-db-subnet" {
   name = "my-rds-db-subnet"
-  subnet_ids = ["${aws_subnet.private1.id}","${aws_subnet.private1.id}"]
+  subnet_ids = ["${var.private_subnet_1_id}","${var.private_subnet_2_id}"]
 }
 
 resource "aws_security_group" "my-rds-sg" {
   name = "my-rds-sg"
-  vpc_id = "${aws_vpc.myvpc.id}"
+  vpc_id = var.vpc_id
 }
 
 resource "aws_security_group_rule" "my-rds-sg-rule" {
@@ -49,9 +49,9 @@ resource "aws_db_instance" "my-rds-sql-db_replica" {
   instance_class = "${var.db_instance}"
   replicate_source_db = aws_db_instance.my-rds-sql-db.identifier
   availability_zone = var.region_subnet_2_id
-  identifier = "my-rds-sql-db-replica"
+  identifier = "${var.rds_db_identifier}-replica"
   apply_immediately = "true"
-  replica_mode = "open-read-only"
+  #replica_mode = "open-read-only"
   db_subnet_group_name = "${aws_db_subnet_group.my-rds-db-subnet.name}"
   vpc_security_group_ids = ["${aws_security_group.my-rds-sg.id}"]
 }

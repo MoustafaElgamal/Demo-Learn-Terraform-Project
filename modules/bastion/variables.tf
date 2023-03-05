@@ -1,0 +1,10 @@
+variable "vpc_id" {}
+variable "my_ip" {}
+variable "all_ips_cidr" {}
+variable "image_name_owner" {}
+variable "image_name" {}
+variable "public_key_location" {}
+variable "ec2_instance_type" {}
+variable "public1_subnet_id" {}
+variable "region_subnet_1_id" {}
+variable "env_prefix" {}
