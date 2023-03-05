@@ -39,15 +39,15 @@ variable "my_ip" {
 }
 
 variable "ec2_instance_type" {
-  type = string  
+  type = string
 }
 
 variable "public_key_location" {
-  type = string 
+  type = string
 }
 
 variable "image_name" {
-  type = string  
+  type = string
 }
 
 variable "image_name_owner" {
@@ -59,5 +59,33 @@ variable "db_instance" {
 }
 
 variable "all_ips_cidr" {
-  
+  type = string
+}
+
+variable "rds_db_identifier" {
+  type = string
+}
+
+variable "rds_db_name" {
+  type = string
+}
+
+variable "rds_db_username" {
+  type = string
+}
+
+variable "rds_db_password" {
+  type = string
+}
+
+variable "rds_db_engine" {
+  type = string
+}
+
+variable "rds_db_engine_version" {
+  type = string
+}
+
+variable "rds_db_storage_type" {
+  type = string
 }

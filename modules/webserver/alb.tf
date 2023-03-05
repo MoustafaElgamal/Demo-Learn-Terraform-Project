@@ -1,6 +1,6 @@
 resource "aws_security_group" "alb-sg" {
   name        = "myapp-alb-sg"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = var.vpc_id
 
 # Inbound Rules
 # HTTP access from anywhere
@@ -38,25 +38,25 @@ resource "aws_lb" "myapp-alb" {
   name               = "myapp-alb-tf"
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.alb-sg.id}"]
-  subnets            = ["${aws_subnet.private1.id}","${aws_subnet.private2.id}"]
+  subnets            = [var.private1_subnet_id,var.private2_subnet_id]
 
   tags = {
     Environment = var.env_prefix
   }
 }
 
-/*resource "aws_lb_target_group_attachment" "alb-tg-attachment" {
+resource "aws_lb_target_group_attachment" "alb-tg-attachment" {
   target_group_arn = aws_lb_target_group.alb-tg.arn
   target_id        = aws_lb.myapp-alb.arn
   port             = 80
-}*/
+}
 
 resource "aws_lb_target_group" "alb-tg" {
   name        = "myapp-alb-tg"
   target_type = "alb"
   port        = 80
   protocol    = "TCP"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = var.vpc_id
 }
 
 resource "aws_alb_listener" "listener_http" {
@@ -70,7 +70,7 @@ resource "aws_alb_listener" "listener_http" {
   }
 }
 
-resource "aws_alb_listener" "listener_https" {
+/*resource "aws_alb_listener" "listener_https" {
   load_balancer_arn = "${aws_lb.myapp-alb.arn}"
   port              = "443"
   protocol          = "HTTPS"
@@ -80,4 +80,4 @@ resource "aws_alb_listener" "listener_https" {
     target_group_arn = "${aws_lb_target_group.alb-tg.arn}"
     type             = "forward"
   }
-}
+}*/

@@ -1,0 +1,9 @@
+variable "vpc_cidr" {}
+variable "all_ips_cidr" {}
+variable "public_subnet_1_cidr" {}
+variable "public_subnet_2_cidr" {}
+variable "private_subnet_1_cidr" {}
+variable "private_subnet_2_cidr" {}
+variable "region_subnet_1_id" {}
+variable "region_subnet_2_id" {}
+variable "env_prefix" {}
